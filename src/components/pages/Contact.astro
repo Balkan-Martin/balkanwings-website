@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../PageHead.astro';
+import Map from '../Map.astro';
+import { t, isPlaceholder, type Lang } from '../../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang), c = s.contact, f = s.footer;
+const phone = f.phone, email = f.email;
+const q = c.mapQuery && !isPlaceholder(c.mapQuery) ? c.mapQuery : (isPlaceholder(f.address) ? '' : f.address);
+---
+<Base lang={lang} slug="contact/" title={`${c.title} | ${s.siteName}`}>
+  <PageHead title={c.title} intro={c.intro} />
+  <section class="section"><div class="wrap split">
+    <dl class="contact">
+      <div><dt>{c.labels.address}</dt><dd>{f.address}</dd></div>
+      <div><dt>{c.labels.phone}</dt><dd>{isPlaceholder(phone) ? phone : <a href={`tel:${phone.replace(/[^+\d]/g, '')}`}>{phone}</a>}</dd></div>
+      <div><dt>{c.labels.email}</dt><dd>{isPlaceholder(email) ? email : <a href={`mailto:${email}`}>{email}</a>}</dd></div>
+      <div><dt>{c.labels.hours}</dt><dd>{c.hours}</dd></div>
+    </dl>
+    <div><Map lang={lang} query={q} embedUrl={c.mapEmbedUrl} labels={{ load: c.mapLoad, note: c.mapNote, open: c.mapOpen, title: c.mapFrameTitle, placeholder: c.mapPlaceholder }} /><h2>{c.mapTitle}</h2><p>{c.map}</p></div>
+  </div></section>
+</Base>

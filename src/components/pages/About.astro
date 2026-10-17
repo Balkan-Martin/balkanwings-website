@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../PageHead.astro';
+import Photo from '../Photo.astro';
+import { t, type Lang } from '../../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang), a = s.about;
+---
+<Base lang={lang} slug="about/" title={`${a.title} | ${s.siteName}`}>
+  <PageHead title={a.title} intro={a.intro} />
+  <section class="section"><div class="wrap split">
+    <div><h2>{a.storyTitle}</h2><p>{a.story}</p><h2>{a.approvalsTitle}</h2><p>{a.approvals}</p></div>
+    <Photo label={s.photoAlt} ratio="4 / 3" />
+  </div></section>
+  <section class="section alt" aria-labelledby="team"><div class="wrap">
+    <h2 id="team">{s.team.title}</h2><p class="intro">{s.team.intro}</p>
+    <ul class="grid g3">{s.team.items.map(i => <li><Photo label={s.photoAlt} ratio="4 / 5" src={i.image} alt={i.t} /><h3>{i.t}</h3><p>{i.d}</p></li>)}</ul>
+  </div></section>
+  <section class="section" aria-labelledby="fleet"><div class="wrap">
+    <h2 id="fleet">{s.fleet.title}</h2><p class="intro">{s.fleet.intro}</p>
+    <ul class="grid g2">{s.fleet.items.map(i => <li><Photo label={s.photoAlt} ratio="16 / 9" src={i.image} alt={i.t} /><h3>{i.t}</h3><p>{i.d}</p></li>)}</ul>
+  </div></section>
+  <section class="section alt" aria-labelledby="fac"><div class="wrap split">
+    <div><h2 id="fac">{s.facilities.title}</h2><p class="intro">{s.facilities.intro}</p></div>
+    <Photo label={s.photoAlt} ratio="3 / 2" src={s.facilities.image} alt={s.facilities.imageAlt} />
+  </div></section>
+</Base>

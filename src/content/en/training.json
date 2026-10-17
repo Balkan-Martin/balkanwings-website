@@ -1,0 +1,28 @@
+{
+  "title": "Training",
+  "intro": "[Placeholder: overview of the training offered and who it is for.]",
+  "labels": {
+    "req": "Entry requirements",
+    "dur": "Duration",
+    "price": "Price"
+  },
+  "enrolTitle": "How to enrol",
+  "steps": [
+    {
+      "t": "[Step 1]",
+      "d": "[Describe the first step.]"
+    },
+    {
+      "t": "[Step 2]",
+      "d": "[Describe the second step.]"
+    },
+    {
+      "t": "[Step 3]",
+      "d": "[Describe the third step.]"
+    }
+  ],
+  "back": "Back to all programs",
+  "gallery": "Photos",
+  "details": "Program details",
+  "empty": "Programs will be published soon."
+}

@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../PageHead.astro';
+import Photo from '../Photo.astro';
+import { getPrograms } from '../../i18n/programs';
+import { t, path, type Lang } from '../../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang), tr = s.training;
+const programs = await getPrograms(lang);
+---
+<Base lang={lang} slug="training/" title={`${tr.title} | ${s.siteName}`}>
+  <PageHead title={tr.title} intro={tr.intro} />
+  <section class="section"><div class="wrap">
+    {programs.length === 0 ? <p class="intro">{tr.empty}</p> : (
+      <ul class="programs">
+        {programs.map(p => (
+          <li class={p.data.image ? 'has-photo' : ''}>
+            <div>
+              <h2><a href={path(lang, `training/${p.slug}/`)}>{p.data.title}</a></h2>
+              <p>{p.data.summary}</p>
+              <dl class="specs">
+                <div><dt>{tr.labels.req}</dt><dd>{p.data.requirements}</dd></div>
+                <div><dt>{tr.labels.dur}</dt><dd>{p.data.duration}</dd></div>
+                <div><dt>{tr.labels.price}</dt><dd>{p.data.price}</dd></div>
+              </dl>
+              <p><a class="link" href={path(lang, `training/${p.slug}/`)}>{tr.details}</a></p>
+            </div>
+            {p.data.image && <Photo label={s.photoAlt} ratio="4 / 3" src={p.data.image} alt={p.data.imageAlt} sizes="(min-width: 860px) 340px, 100vw" />}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div></section>
+  <section class="section alt"><div class="wrap">
+    <h2>{tr.enrolTitle}</h2>
+    <ol class="steps">{tr.steps.map(i => <li><h3>{i.t}</h3><p>{i.d}</p></li>)}</ol>
+    <p><a class="btn primary" href={path(lang, 'contact/')}>{s.cta.btn}</a></p>
+  </div></section>
+</Base>

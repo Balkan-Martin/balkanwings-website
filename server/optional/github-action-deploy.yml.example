@@ -1,0 +1,34 @@
+name: Build and deploy to superhosting
+on:
+  push: { branches: [main] }
+  workflow_dispatch: {}
+concurrency: { group: deploy, cancel-in-progress: true }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Upload over SFTP
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_PATH: ${{ secrets.SFTP_PATH }}
+          SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS }}
+        run: |
+          echo "$SFTP_KNOWN_HOSTS" > "$RUNNER_TEMP/known_hosts"
+          # No --delete: files that exist only on the server (oauth/config.php) are never removed.
+          lftp <<LFTP
+          set sftp:connect-program "ssh -a -x -p ${SFTP_PORT:-22} -o UserKnownHostsFile=$RUNNER_TEMP/known_hosts -o StrictHostKeyChecking=yes"
+          set net:max-retries 2
+          open -u "$SFTP_USER","$SFTP_PASSWORD" sftp://$SFTP_HOST
+          mirror -R --no-perms --parallel=4 --verbose dist/ "$SFTP_PATH"
+          bye
+          LFTP

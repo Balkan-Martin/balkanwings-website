@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /oauth/
+
+Sitemap: https://balkanwings.eu/sitemap-index.xml

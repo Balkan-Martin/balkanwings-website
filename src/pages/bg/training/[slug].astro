@@ -1,0 +1,10 @@
+---
+import { getPrograms } from '../../../components/../i18n/programs';
+import Detail from '../../../components/pages/TrainingDetail.astro';
+export async function getStaticPaths() {
+  const programs = await getPrograms('bg');
+  return programs.map((p) => ({ params: { slug: p.slug }, props: { post: p.entry } }));
+}
+const { post } = Astro.props;
+---
+<Detail lang="bg" post={post} />

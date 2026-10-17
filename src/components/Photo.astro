@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+// Shows a CMS image (optimised to WebP at several sizes) or a striped placeholder when none is set.
+interface Props { label: string; ratio?: string; src?: string; alt?: string; eager?: boolean; sizes?: string }
+const { label, ratio = '4 / 3', src = '', alt = '', eager = false, sizes = '(min-width: 1120px) 520px, 100vw' } = Astro.props;
+const all = import.meta.glob('/src/assets/uploads/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true }) as Record<string, any>;
+const img = src ? all[src]?.default : undefined;
+if (src && !img) console.warn(`[Photo] image not found: ${src}`);
+---
+{img ? (
+  <figure class="photo has-img" style={`aspect-ratio:${ratio}`}>
+    <Image src={img} alt={alt} widths={[480, 800, 1200]} sizes={sizes} format="webp"
+      loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+  </figure>
+) : (
+  <figure class="photo" style={`aspect-ratio:${ratio}`} role="img" aria-label={label}><figcaption>{label}</figcaption></figure>
+)}

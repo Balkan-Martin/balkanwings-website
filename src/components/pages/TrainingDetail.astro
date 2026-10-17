@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../PageHead.astro';
+import Photo from '../Photo.astro';
+import { render, getCollection } from 'astro:content';
+import { t, path, type Lang } from '../../i18n/ui';
+const { lang, post } = Astro.props as { lang: Lang; post: any };
+const s = t(lang), tr = s.training, d = post.data;
+const { Content } = await render(post);
+const slug = post.id.split('/')[1];
+const other: Lang = lang === 'en' ? 'bg' : 'en';
+// If this program has no page in the other language, the language switch goes to the program list instead.
+const hasTr = (await getCollection('programs', ({ id, data }) => !data.draft)).some((p) => p.id === `${other}/${slug}`);
+---
+<Base lang={lang} slug={`training/${slug}/`} altSlug={hasTr ? `training/${slug}/` : 'training/'} hasTranslation={hasTr}
+      title={`${d.title} | ${s.siteName}`} description={d.summary || undefined}>
+  <PageHead title={d.title} intro={d.summary} />
+  <section class="section"><div class="wrap split top">
+    <div>
+      <p><a class="link" href={path(lang, 'training/')}>{tr.back}</a></p>
+      <dl class="specs">
+        <div><dt>{tr.labels.req}</dt><dd>{d.requirements}</dd></div>
+        <div><dt>{tr.labels.dur}</dt><dd>{d.duration}</dd></div>
+        <div><dt>{tr.labels.price}</dt><dd>{d.price}</dd></div>
+      </dl>
+      <div class="prose"><Content /></div>
+    </div>
+    <Photo label={s.photoAlt} ratio="4 / 3" src={d.image} alt={d.imageAlt} eager sizes="(min-width: 860px) 520px, 100vw" />
+  </div></section>
+  {d.gallery.length > 0 && (
+    <section class="section alt" aria-labelledby="gal"><div class="wrap">
+      <h2 id="gal">{tr.gallery}</h2>
+      <ul class="grid g3">{d.gallery.map((g: any) => <li><Photo label={s.photoAlt} ratio="4 / 3" src={g.image} alt={g.alt} sizes="(min-width: 960px) 360px, 100vw" /></li>)}</ul>
+    </div></section>
+  )}
+  <section class="cta"><div class="wrap">
+    <h2>{s.cta.title}</h2><p>{s.cta.text}</p>
+    <a class="btn primary" href={path(lang, 'contact/')}>{s.cta.btn}</a>
+  </div></section>
+</Base>

@@ -1,0 +1,12 @@
+[Unit]
+Description=Balkan Wings local CMS file server (test only)
+After=network.target
+
+[Service]
+User=__USER__
+WorkingDirectory=__DIR__
+ExecStart=/usr/bin/env npm run cms
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

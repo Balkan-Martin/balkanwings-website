@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../PageHead.astro';
+import { t, type Lang } from '../../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang), f = s.faq;
+---
+<Base lang={lang} slug="faq/" title={`${f.title} | ${s.siteName}`}>
+  <PageHead title={f.title} intro={f.intro} />
+  <section class="section"><div class="wrap faq">
+    {f.items.map(i => <details><summary>{i.q}</summary><p>{i.a}</p></details>)}
+  </div></section>
+</Base>

@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+import { t, path, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; slug?: string; title?: string; description?: string; altSlug?: string; hasTranslation?: boolean }
+const { lang, slug = '', title, description, altSlug, hasTranslation = true } = Astro.props;
+const otherSlug = altSlug ?? slug;
+const slugFor = (l: Lang) => (l === lang ? slug : otherSlug);
+const s = t(lang);
+const other: Lang = lang === 'en' ? 'bg' : 'en';
+const site = Astro.site!.origin;
+const pageTitle = title ?? s.meta.title;
+const pageDesc = description ?? s.meta.description;
+const nav = [['home', ''], ['about', 'about/'], ['training', 'training/'], ['faq', 'faq/'], ['contact', 'contact/']] as const;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDesc} />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="canonical" href={site + path(lang, slug)} />
+  {hasTranslation && <link rel="alternate" hreflang="en" href={site + path('en', slugFor('en'))} />}
+  {hasTranslation && <link rel="alternate" hreflang="bg" href={site + path('bg', slugFor('bg'))} />}
+  {hasTranslation && <link rel="alternate" hreflang="x-default" href={site + path('en', slugFor('en'))} />}
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDesc} />
+  <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'bg_BG'} />
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'EducationalOrganization', name: s.siteName, url: site + path(lang) })} />
+  <script is:inline>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip" href="#main">{s.skip}</a>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="logo" href={path(lang)}><img src="/logo.png" alt={s.logoAlt} width="720" height="170" /></a>
+      <div class="menu">
+        <button type="button" class="menu-btn" aria-expanded="false" aria-controls="main-nav">{s.menu}</button>
+        <nav id="main-nav" class="main-nav" aria-label="Main">
+          <ul>
+            {nav.map(([k, p]) => <li><a href={path(lang, p)} aria-current={p === slug ? 'page' : undefined}>{s.nav[k]}</a></li>)}
+          </ul>
+        </nav>
+      </div>
+      <a class="lang" href={path(other, otherSlug)} hreflang={other} lang={other} aria-label={s.switchLabel}>{s.switchTo}</a>
+    </div>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="brand">{s.siteName}</p>
+      <address>{s.footer.address}<br />{s.footer.phone}<br />{s.footer.email}</address>
+      <p>© {new Date().getFullYear()} {s.siteName}. {s.footer.rights}</p>
+    </div>
+  </footer>
+<script is:inline>
+  (function () {
+    var b = document.querySelector('.menu-btn'), n = document.getElementById('main-nav');
+    function set(open) { n.classList.toggle('open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    b.addEventListener('click', function () { set(!n.classList.contains('open')); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && n.classList.contains('open')) { set(false); b.focus(); } });
+  })();
+  </script>
+  <div id="notice" class="notice" role="region" aria-label={s.notice.label} hidden>
+    <div class="wrap">
+      <p>{s.notice.text}</p>
+      <button type="button">{s.notice.ok}</button>
+    </div>
+  </div>
+<script is:inline>
+  (function () {
+    var n = document.getElementById('notice');
+    if (!n) return;
+    var KEY = 'bw-notice-ok', seen = false;
+    try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (seen) return;
+    n.hidden = false;
+    document.body.classList.add('has-notice');
+    n.querySelector('button').addEventListener('click', function () {
+      n.hidden = true;
+      document.body.classList.remove('has-notice');
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

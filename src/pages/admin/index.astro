@@ -1,0 +1,17 @@
+---
+// Decap CMS editor shell. A page (not a file in public/) so /admin/ works in dev and in production.
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Balkan Wings: content editor</title>
+</head>
+<body>
+  <script is:inline>window.CMS_MANUAL_INIT = true;</script>
+  <script is:inline src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+  <script is:inline src="/admin/config.js"></script>
+</body>
+</html>

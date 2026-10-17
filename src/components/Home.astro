@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from './Photo.astro';
+import { getPrograms } from '../i18n/programs';
+import { t, path, type Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang);
+const programs = await getPrograms(lang);
+---
+<Base lang={lang}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>{s.hero.title}</h1>
+        <p class="lead">{s.hero.lead}</p>
+        <p class="actions">
+          <a class="btn primary" href={path(lang, 'training/')}>{s.hero.cta1}</a>
+          <a class="btn" href={path(lang, 'contact/')}>{s.hero.cta2}</a>
+        </p>
+      </div>
+      <Photo label={s.hero.photo} ratio="5 / 4" src={s.hero.image} alt={s.hero.imageAlt} eager />
+    </div>
+    <div class="wrap">
+      <dl class="facts">
+        {s.facts.map(f => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="programs">
+    <div class="wrap">
+      <h2 id="programs">{s.programs.title}</h2>
+      <p class="intro">{s.programs.intro}</p>
+      <ul class="grid g3">
+        {programs.map(p => <li><h3><a href={path(lang, `training/${p.slug}/`)}>{p.data.title}</a></h3><p>{p.data.summary}</p></li>)}
+      </ul>
+      <p><a class="link" href={path(lang, 'training/')}>{s.programs.more}</a></p>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="fleet">
+    <div class="wrap">
+      <h2 id="fleet">{s.fleet.title}</h2>
+      <p class="intro">{s.fleet.intro}</p>
+      <ul class="grid g2">
+        {s.fleet.items.map(i => <li><Photo label={s.photoAlt} ratio="16 / 9" src={i.image} alt={i.t} /><h3>{i.t}</h3><p>{i.d}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="team">
+    <div class="wrap">
+      <h2 id="team">{s.team.title}</h2>
+      <p class="intro">{s.team.intro}</p>
+      <ul class="grid g3">
+        {s.team.items.map(i => <li><Photo label={s.photoAlt} ratio="4 / 5" src={i.image} alt={i.t} /><h3>{i.t}</h3><p>{i.d}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="facilities">
+    <div class="wrap split">
+      <div><h2 id="facilities">{s.facilities.title}</h2><p class="intro">{s.facilities.intro}</p></div>
+      <Photo label={s.photoAlt} ratio="3 / 2" src={s.facilities.image} alt={s.facilities.imageAlt} />
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>{s.cta.title}</h2><p>{s.cta.text}</p>
+      <a class="btn primary" href={path(lang, 'contact/')}>{s.cta.btn}</a>
+    </div>
+  </section>
+</Base>

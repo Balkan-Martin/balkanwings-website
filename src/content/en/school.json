@@ -1,0 +1,45 @@
+{
+  "team": {
+    "title": "Instructors",
+    "intro": "[Placeholder: describe the instructor team and their qualifications.]",
+    "items": [
+      {
+        "t": "[Instructor name]",
+        "d": "[Role and ratings]",
+        "image": ""
+      },
+      {
+        "t": "[Instructor name]",
+        "d": "[Role and ratings]",
+        "image": ""
+      },
+      {
+        "t": "[Instructor name]",
+        "d": "[Role and ratings]",
+        "image": ""
+      }
+    ]
+  },
+  "fleet": {
+    "title": "Aircraft",
+    "intro": "[Placeholder: describe the training fleet.]",
+    "items": [
+      {
+        "t": "[Aircraft type 1]",
+        "d": "[Registration, role, key details.]",
+        "image": ""
+      },
+      {
+        "t": "[Aircraft type 2]",
+        "d": "[Registration, role, key details.]",
+        "image": ""
+      }
+    ]
+  },
+  "facilities": {
+    "title": "Facilities",
+    "intro": "[Placeholder: classrooms, simulators, briefing rooms, airfield.]",
+    "image": "",
+    "imageAlt": ""
+  }
+}

@@ -1,0 +1,40 @@
+---
+import { isPlaceholder } from '../i18n/ui';
+// Click-to-load Google map: nothing is requested from Google until the visitor clicks the button.
+interface Props { query?: string; embedUrl?: string; lang: string; labels: { load: string; note: string; open: string; title: string; placeholder: string } }
+const { query = '', embedUrl = '', lang, labels } = Astro.props;
+const q = query.trim();
+const hasQuery = q !== '' && !isPlaceholder(q);
+const custom = embedUrl.trim();
+// Only Google Maps embed addresses are accepted, so a mistyped or malicious URL can never be framed.
+const embed = /^https:\/\/www\.google\.com\/maps\/embed/i.test(custom) ? custom
+  : hasQuery ? `https://www.google.com/maps?q=${encodeURIComponent(q)}&hl=${lang}&z=15&output=embed` : '';
+const open = hasQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : '';
+---
+<div class="map" data-map>
+  {embed ? (
+    <div class="map-gate">
+      <p>{labels.note}</p>
+      <button type="button" class="btn primary" data-src={embed} data-title={labels.title}>{labels.load}</button>
+      {open && <a class="link" href={open} target="_blank" rel="noopener noreferrer">{labels.open}</a>}
+    </div>
+  ) : (
+    <div class="map-gate"><p>{labels.placeholder}</p></div>
+  )}
+</div>
+<script is:inline>
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-map] button[data-src]');
+    if (!b) return;
+    var box = b.closest('[data-map]');
+    var f = document.createElement('iframe');
+    f.src = b.getAttribute('data-src');
+    f.title = b.getAttribute('data-title') || '';
+    f.loading = 'lazy';
+    f.referrerPolicy = 'no-referrer-when-downgrade';
+    f.setAttribute('allowfullscreen', '');
+    box.textContent = '';
+    box.appendChild(f);
+    box.classList.add('loaded');
+  });
+</script>

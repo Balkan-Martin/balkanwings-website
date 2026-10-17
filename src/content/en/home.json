@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "title": "[Headline: what the school offers and for whom]",
+    "lead": "[Placeholder: two sentences on the school, its location and its approach to training.]",
+    "cta1": "See training programs",
+    "cta2": "Contact us",
+    "photo": "Photo placeholder: aircraft on the apron or in flight",
+    "image": "",
+    "imageAlt": ""
+  },
+  "facts": [
+    {
+      "k": "[Approval no.]",
+      "v": "Training organisation approval"
+    },
+    {
+      "k": "[Year]",
+      "v": "Founded"
+    },
+    {
+      "k": "[Airfield, ICAO]",
+      "v": "Home base"
+    }
+  ],
+  "cta": {
+    "title": "Ready to start?",
+    "text": "[Placeholder: how to arrange an introductory conversation or trial flight.]",
+    "btn": "Contact us"
+  }
+}

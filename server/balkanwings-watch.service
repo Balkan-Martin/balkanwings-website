@@ -1,0 +1,12 @@
+[Unit]
+Description=Balkan Wings rebuild on content change (test only)
+After=network.target
+
+[Service]
+User=__USER__
+WorkingDirectory=__DIR__
+ExecStart=__DIR__/server/watch-and-deploy.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

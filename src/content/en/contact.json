@@ -1,20 +1,20 @@
 {
-  "title": "Contact",
+  "mapLoad": "Load interactive map",
+  "mapOpen": "Open in Google Maps (new tab)",
+  "mapFrameTitle": "Map showing the school location",
+  "mapQuery": "Lesnovo Airfield",
   "intro": "[Placeholder: how and when to reach the school.]",
+  "mapNote": "Loading the map connects your browser to Google, which may store cookies.",
+  "hours": "[Opening hours]",
+  "mapEmbedUrl": "",
+  "mapPlaceholder": "[Map placeholder: add the location in the CMS]",
+  "title": "Contact",
+  "map": "[Placeholder: directions to the airfield and parking information.]",
+  "mapTitle": "Finding us",
   "labels": {
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
     "hours": "Opening hours"
-  },
-  "hours": "[Opening hours]",
-  "mapTitle": "Finding us",
-  "map": "[Placeholder: directions to the airfield and parking information.]",
-  "mapQuery": "[Address or coordinates for the map]",
-  "mapEmbedUrl": "",
-  "mapLoad": "Load interactive map",
-  "mapNote": "Loading the map connects your browser to Google, which may store cookies.",
-  "mapOpen": "Open in Google Maps (new tab)",
-  "mapFrameTitle": "Map showing the school location",
-  "mapPlaceholder": "[Map placeholder: add the location in the CMS]"
+  }
 }

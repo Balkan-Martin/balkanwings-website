@@ -39,11 +39,12 @@ const nav = [['home', ''], ['about', 'about/'], ['training', 'training/'], ['faq
         <button type="button" class="menu-btn" aria-expanded="false" aria-controls="main-nav">{s.menu}</button>
         <nav id="main-nav" class="main-nav" aria-label="Main">
           <ul>
+            <li class="lang-item lang-first"><a class="lang" href={path(other, otherSlug)} hreflang={other} lang={other} aria-label={s.switchLabel}>{s.switchTo}</a></li>
             {nav.map(([k, p]) => <li><a href={path(lang, p)} aria-current={p === slug ? 'page' : undefined}>{s.nav[k]}</a></li>)}
+            <li class="lang-item lang-last"><a class="lang" href={path(other, otherSlug)} hreflang={other} lang={other} aria-label={s.switchLabel}>{s.switchTo}</a></li>
           </ul>
         </nav>
       </div>
-      <a class="lang" href={path(other, otherSlug)} hreflang={other} lang={other} aria-label={s.switchLabel}>{s.switchTo}</a>
     </div>
   </header>
   <main id="main"><slot /></main>

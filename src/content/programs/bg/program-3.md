@@ -1,11 +1,11 @@
 ---
-handle: program-3
-title: "[Програма 3]"
+handle: nvfr
+title: NVFR(A)
+summary: Нощни полети
 order: 3
-summary: "[Кратко описание, показвано в списъците.]"
 requirements: "[Изисквания за прием]"
 duration: "[Продължителност]"
-price: "[Цена]"
+price: € 4000
 image: ""
 imageAlt: ""
 gallery: []

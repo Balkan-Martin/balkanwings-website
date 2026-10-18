@@ -1,11 +1,11 @@
 ---
-handle: program-2
-title: "[Програма 2]"
-order: 2
+handle: hour-building
+title: Hour Building
 summary: "[Кратко описание, показвано в списъците.]"
-requirements: "[Изисквания за прием]"
-duration: "[Продължителност]"
-price: "[Цена]"
+order: 2
+requirements: PPL(A)
+duration: ""
+price: €220/ час
 image: ""
 imageAlt: ""
 gallery: []

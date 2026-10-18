@@ -1,8 +1,8 @@
 ---
-handle: program-2
-title: "[Program 2]"
-order: 2
+handle: hour-building
+title: Hour Building
 summary: "[Short description shown in lists.]"
+order: 2
 requirements: "[Entry requirements]"
 duration: "[Duration]"
 price: "[Price]"

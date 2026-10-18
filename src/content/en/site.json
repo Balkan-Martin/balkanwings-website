@@ -1,10 +1,5 @@
 {
-  "siteName": "Balkan Wings",
-  "logoAlt": "Balkan Wings Academy",
-  "meta": {
-    "title": "Balkan Wings | Flight training in Bulgaria",
-    "description": "[Placeholder: one-sentence description of the flight school, 150 characters max.]"
-  },
+  "switchLabel": "Switch to Bulgarian",
   "nav": {
     "home": "Home",
     "about": "About",
@@ -12,20 +7,25 @@
     "faq": "FAQ",
     "contact": "Contact"
   },
-  "menu": "Menu",
-  "skip": "Skip to content",
+  "meta": {
+    "title": "Balkan Wings | Flight training in Bulgaria",
+    "description": "Get your wings - begin your aviation journey."
+  },
   "switchTo": "Български",
-  "switchLabel": "Switch to Bulgarian",
+  "siteName": "Balkan Wings",
   "photoAlt": "Photo placeholder",
+  "notice": {
+    "label": "Cookie notice",
+    "text": "This website does not use cookies. If you load the map on the Contact page, Google may set its own cookies.",
+    "ok": "OK"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "address": "[Address]",
     "phone": "[Phone]",
     "email": "[Email]"
   },
-  "notice": {
-    "label": "Cookie notice",
-    "text": "This website does not use cookies. If you load the map on the Contact page, Google may set its own cookies.",
-    "ok": "OK"
-  }
+  "logoAlt": "Balkan Wings Academy",
+  "menu": "Menu",
+  "skip": "Skip to content"
 }

@@ -1,11 +1,11 @@
 ---
-handle: program-1
-title: "[Program 1]"
-order: 1
+handle: ppl
+title: PPL(A)
 summary: "[Short description shown in lists.]"
+order: 1
 requirements: "[Entry requirements]"
-duration: "[Duration]"
-price: "[Price]"
+duration: min. 45 hours
+price: €13,000
 image: ""
 imageAlt: ""
 gallery: []

@@ -1,9 +1,9 @@
 ---
-handle: program-3
-title: "[Program 3]"
-order: 3
+handle: nvfr
+title: NVFR(A)
 summary: "[Short description shown in lists.]"
-requirements: "[Entry requirements]"
+order: 3
+requirements: PPL(A)
 duration: "[Duration]"
 price: "[Price]"
 image: ""

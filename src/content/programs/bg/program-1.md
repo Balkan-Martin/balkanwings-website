@@ -1,11 +1,11 @@
 ---
-handle: program-1
-title: "[Програма 1]"
-order: 1
+handle: ppl
+title: PPL(A)
 summary: "[Кратко описание, показвано в списъците.]"
+order: 1
 requirements: "[Изисквания за прием]"
-duration: "[Продължителност]"
-price: "[Цена]"
+duration: мин. 45 часа
+price: €13,000
 image: ""
 imageAlt: ""
 gallery: []

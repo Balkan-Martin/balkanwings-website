@@ -1,10 +1,5 @@
 {
-  "siteName": "Balkan Wings",
-  "logoAlt": "Balkan Wings Academy",
-  "meta": {
-    "title": "Balkan Wings | Летателно обучение в България",
-    "description": "[Заместител: едно изречение за школата, до 150 знака.]"
-  },
+  "switchLabel": "Превключване към английски",
   "nav": {
     "home": "Начало",
     "about": "За нас",
@@ -12,20 +7,25 @@
     "faq": "Въпроси",
     "contact": "Контакти"
   },
-  "menu": "Меню",
-  "skip": "Към съдържанието",
-  "switchTo": "English",
-  "switchLabel": "Превключване към английски",
-  "photoAlt": "Заместител за снимка",
-  "footer": {
-    "rights": "Всички права запазени.",
-    "address": "[Адрес]",
-    "phone": "[Телефон]",
-    "email": "[Имейл]"
+  "meta": {
+    "title": "Balkan Wings | Обучение за пилоти в България",
+    "description": "Дайте начало на своята авиационна кариера."
   },
+  "switchTo": "English",
+  "siteName": "Balkan Wings Academy",
+  "photoAlt": "Заместител за снимка",
   "notice": {
     "label": "Съобщение за бисквитки",
     "text": "Този уебсайт не използва бисквитки. Ако заредите картата на страницата „Контакти“, Google може да зададе свои бисквитки.",
-    "ok": "OK"
-  }
+    "ok": "ДОБРЕ"
+  },
+  "footer": {
+    "rights": "Всички права запазени.",
+    "address": "Летище Лесново, с. Лесново, общ. Елин Пелин",
+    "phone": "[Телефон]",
+    "email": "hello@balkanwings.eu"
+  },
+  "logoAlt": "Balkan Wings Academy",
+  "menu": "Меню",
+  "skip": "Към съдържанието"
 }
